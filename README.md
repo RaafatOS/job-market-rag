@@ -23,3 +23,12 @@ An end-to-end RAG project that uses web scraping to collect job posts from job s
 - `ingestion/`: text cleaning, chunking, embedding, and FAISS index creation.
 - `rag/`: retriever, prompt, and question-answering flow.
 - `data/processed/`: processed sample job data used by ingestion.
+
+## Job Record Schema
+
+Each scraped or hand-authored job should match this shape before ingestion:
+
+- Required: `job_id`, `title`, `company`, `location`, `description`
+- Optional: `url`, `source`, `posted_at`, `salary`, `tags`
+
+The ingestion pipeline validates this contract in `ingestion/job_record.py`, which makes it a good target format for future scrapers.
