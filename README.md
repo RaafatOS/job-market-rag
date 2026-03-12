@@ -10,8 +10,16 @@ An end-to-end RAG project that uses web scraping to collect job posts from job s
 	& .\.venv\Scripts\Activate.ps1
 	python -m pip install --upgrade pip
 	python -m pip install -r requirements.txt
+	Copy-Item .env.example .env
 	```
 
 - **Notes:**
 	- Edit `./.env` and fill real secret values. Do not commit the `.env` file to source control.
-	- The `env_setup.ps1` script will create `.venv`, install `requirements.txt` (if present), and copy `.env.example` to `.env` if `.env` is missing.
+	- Run `python ingestion/run_ingestion.py` before starting the CLI so the local FAISS index is created.
+
+## Project Layout
+
+- `app/`: interactive CLI entrypoint.
+- `ingestion/`: text cleaning, chunking, embedding, and FAISS index creation.
+- `rag/`: retriever, prompt, and question-answering flow.
+- `data/processed/`: processed sample job data used by ingestion.

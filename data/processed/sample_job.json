@@ -1,0 +1,9 @@
+[
+  {
+    "job_id": "job-001",
+    "title": "Junior Data Scientist",
+    "company": "TechNova",
+    "location": "France",
+    "description": "We are looking for a Junior Data Scientist to join our analytics team. The candidate will work on data analysis, feature engineering, and basic machine learning models. Required skills include Python, SQL, statistics, and experience with data visualization tools. Familiarity with scikit-learn and pandas is a plus."
+  }
+]

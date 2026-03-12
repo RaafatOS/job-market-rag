@@ -1,7 +1,8 @@
-from langchain_openai import OpenAI
+from langchain_openai import ChatOpenAI
+
 
 def load_llm():
-    return OpenAI(
+    return ChatOpenAI(
         temperature=0,
-        model_name="gpt-3.5-turbo-instruct"
+        model="gpt-4o-mini",
     )

@@ -1,17 +1,16 @@
+from langchain_core.messages import HumanMessage, SystemMessage
+
+from rag.prompt import SYSTEM_PROMPT
+
+
 def answer_question(llm, retriever, question):
-    docs = retriever.get_relevant_documents(question)
-    context = "\n\n".join([d.page_content for d in docs])
+    docs = retriever.invoke(question)
+    context = "\n\n".join(d.page_content for d in docs)
 
-    prompt = f"""
-    You are an AI assistant specialized in job market analysis.
-    Answer ONLY using the provided context.
-    If the answer is not in the context, say you don't know.
-
-    Context:
-    {context}
-
-    Question:
-    {question}
-    """
-
-    return llm(prompt)
+    response = llm.invoke(
+        [
+            SystemMessage(content=SYSTEM_PROMPT.strip()),
+            HumanMessage(content=f"Context:\n{context}\n\nQuestion:\n{question}"),
+        ]
+    )
+    return response.content
